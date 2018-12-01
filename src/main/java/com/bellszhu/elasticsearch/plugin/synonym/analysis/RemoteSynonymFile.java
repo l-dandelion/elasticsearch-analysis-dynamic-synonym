@@ -180,7 +180,6 @@ public class RemoteSynonymFile implements SynonymFile {
 		try {
 			response = httpclient.execute(head);
 			if (response.getStatusLine().getStatusCode() == 200) { // 返回200 才做操作
-				logger.info("response get status code 200");
 				if (!response.getLastHeader("Last-Modified").getValue()
 						.equalsIgnoreCase(lastModified)
 						|| (response.getLastHeader("ETag") != null
