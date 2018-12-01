@@ -185,6 +185,7 @@ public class RemoteSynonymFile implements SynonymFile {
 		try {
 			response = httpclient.execute(head);
 			if (response.getStatusLine().getStatusCode() == 200) { // 返回200 才做操作
+				logger.info("response get status code 200");
 				if (!response.getLastHeader("Last-Modified").getValue()
 						.equalsIgnoreCase(lastModified)
 						|| !response.getLastHeader("ETag").getValue()
@@ -195,11 +196,10 @@ public class RemoteSynonymFile implements SynonymFile {
 									.getValue();
 					eTags = response.getLastHeader("ETag") == null ? null
 							: response.getLastHeader("ETag").getValue();
-					logger.error
 					return true;
 				}
 			} else if (response.getStatusLine().getStatusCode() == 304) {
-				logger.error("response get status code 304")
+				
 				return false;
 			} else {
 				logger.info("remote synonym {} return bad code {}", location,
