@@ -183,8 +183,8 @@ public class RemoteSynonymFile implements SynonymFile {
 				logger.info("response get status code 200");
 				if (!response.getLastHeader("Last-Modified").getValue()
 						.equalsIgnoreCase(lastModified)
-						|| !response.getLastHeader("ETag").getValue()
-								.equalsIgnoreCase(eTags)) {
+						|| (response.getLastHeader("ETag") != null
+						&& !response.getLastHeader("ETag").getValue().equalsIgnoreCase(eTags))) {
 
 					lastModified = response.getLastHeader("Last-Modified") == null ? null
 							: response.getLastHeader("Last-Modified")
