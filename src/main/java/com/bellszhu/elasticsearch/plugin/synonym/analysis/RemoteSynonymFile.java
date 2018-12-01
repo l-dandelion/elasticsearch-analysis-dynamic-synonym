@@ -147,11 +147,6 @@ public class RemoteSynonymFile implements SynonymFile {
 			logger.error("get remote synonym reader {} error!", e, location);
 			throw new IllegalArgumentException(
 					"IOException while reading remote synonyms file", e);
-		} catch (Exception e) {
-			logger.error("reload remote synonym {} error!", e, location);
-			throw new IllegalArgumentException(
-					"could not reload remote synonyms file to build synonyms",
-					e);
 		} finally {
 			try {
 				if (br != null) {
@@ -209,6 +204,11 @@ public class RemoteSynonymFile implements SynonymFile {
 		} catch (IOException e) {
 			logger.error("check need reload remote synonym {} error!", e,
 					location);
+		} catch (Exception e) {
+			logger.error("reload remote synonym {} error!", e, location);
+			throw new IllegalArgumentException(
+					"could not reload remote synonyms file to build synonyms",
+					e);
 		} finally {
 			try {
 				if (response != null) {
