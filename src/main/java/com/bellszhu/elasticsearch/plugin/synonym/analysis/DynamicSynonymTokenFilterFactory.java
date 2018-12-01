@@ -164,6 +164,7 @@ public class DynamicSynonymTokenFilterFactory extends
 
 		@Override
 		public void run() {
+			logger.info("{} monitor run", indexName);
 			if (synonymFile.isNeedReloadSynonymMap()) {
 				synonymMap = synonymFile.reloadSynonymMap();
 				for (DynamicSynonymFilter dynamicSynonymFilter : dynamicSynonymFilters
